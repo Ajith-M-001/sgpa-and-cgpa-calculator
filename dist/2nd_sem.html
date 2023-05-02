@@ -1,0 +1,958 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA & CGPA Calculator | By Ajith</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    .active {
+        background-color: rgb(1, 163, 147);
+        color: #fff;
+    }
+
+    #overlay {
+        z-index: 999;
+    }
+
+    #modal {
+        z-index: 1000;
+    }
+
+    /* .hidden {
+        display: none;
+    } */
+    .image {
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+    <!-- navabr -->
+    <nav class="bg-white  w-full z-10  rounded-sm shadow-lg py-1 sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <div class="flex-shrink-0">
+                <a href="/dist/index.html">
+                    <img class="h-16 w-auto image" src="img/logo.png" alt="Logo">
+                </a>
+            </div>
+            <div class="hidden md:block">
+                <div class="flex space-x-4">
+                    <a href="1st_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">1st
+                        sem</a>
+                    <a href="2nd_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">2nd
+                        sem</a>
+                    <a href="3rd_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">3rd
+                        sem</a>
+                    <a href="4th_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">4th
+                        sem</a>
+                </div>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#"
+                    class="hover:bg-teal-600 dashboard-link px-3 py-2 rounded-md text-xl lg:text-xl font-medium bg-teal-500 text-white">Dashboard</a>
+            </div>
+
+
+
+            <div class="-mr-2 flex md:hidden">
+                <button type="button" id="mobile-menu-button1"
+                    class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Hamburger menu icon -->
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true" id="menu-toggle">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="bg-black bg-opacity-50 fixed inset-0 z-50 hidden" id="mobile-menu">
+            <div class="flex flex-col items-center justify-center h-full">
+                <a href="#" class="text-white text-2xl font-bold mb-4">Menu</a>
+                <a href="1st_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">1st
+                    sem</a>
+                <a href="2nd_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">2nd
+                    sem</a>
+                <a href="3rd_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">3rd
+                    sem</a>
+                <a href="4th_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">4th
+                    sem</a>
+                <button id="mobile-menu-button"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white absolute top-0 right-0 m-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- hero section -->
+    <section class="bg-neutral-100 h-auto text-black  shadow-lg mt-4 px-8 rounded-l-2xl">
+        <div class="container mx-auto flex flex-wrap items-center">
+            <div class="w-full lg:w-1/2 pr-4 py-20">
+                <h1 class="text-4xl font-bold mb-4">Calculate Your <span class="text-orange-600">2nd Semester</span>  Result</h1>
+                <p class="text-xl lg:text-xl mb-8">In this page, you can calculate your 2nd semester result, CGPA, and
+                    percentage.
+                    We wish all the best to everyone who is waiting for their results!</p>
+                <a href="#section1"
+                    class="bg-teal-500 text-2xl font-bold text-white py-2 px-4 rounded-lg shadow-lg hover:bg-teal-600 hover:text-white transition-colors duration-300">Calculate
+                    Now</a>
+            </div>
+            <div class="w-full lg:w-1/2 hidden md:hidden lg:block" <div
+                class="rounded-md overflow-hidden w-3/10 mx-auto max-w-xs">
+                <img src="img/tax-calculator-landing.svg" alt="your-image-description" class="w-full h-96">
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- form -->
+    <div class="container mx-auto  pt-6 my-4 bg-gray-100 rounded-t-lg shadow-lg  px-8 py-4 " id="section1">
+        <div class="text-center w-full ">
+            <h1 class=" text-2xl font-bold mb-4 bg-teal-500 py-4 text-white p-2 rounded-lg shadow-lg mt-6">Student
+                Details
+            </h1>
+        </div>
+        <form id="student-form">
+            <div id="student-form1" class="flex flex-wrap justify-between">
+                <div class="mb-4 w-full md:w-auto">
+                    <label for="usn" class="block text-gray-700 font-bold mb-2 text-2xl ">USN</label>
+
+                    <input type="text" id="usn" name="usn"
+                        class="w-full px-3 py-2 placeholder-gray-400 text-transform: uppercase border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                        placeholder="1BI21MCXXX">
+                    <div class="error-container  h-10 w-35">
+                        <p id="usn-error" class="text-red-500  my-2  text-md px-3 hidden">enter a valid USN
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-4 w-full md:w-auto">
+                    <label for="name" class="block text-gray-700 font-bold mb-2 text-2xl ">Name</label>
+                    <input type="text" id="name" name="name"
+                        class="w-full px-3 py-2 text-transform: uppercase placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                        placeholder="John Doe">
+                    <div class="error-container  h-10 w-35">
+                        <p id="name-error" class="text-red-500 text-md my-2  px-3 hidden">enter a valid name </p>
+                    </div>
+                </div>
+
+                <div class="mb-4 w-full md:w-auto h20">
+                    <label for="gender" class="block text-gray-700 font-bold mb-2 text-2xl ">Gender</label>
+                    <select id="gender" name="gender"
+                        class="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <div class="error-container  h-10 w-32">
+                        <p id="gender-error" class="text-red-500 text-md my-2  px-3 hidden">Please select a gender
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="student-form2 mt-6" id="subject-fields">
+                <div class="text-center w-full ">
+                    <h2 class="text-2xl font-medium mb-4 bg-teal-500 text-white rounded-md py-4 px-5">Enter Marks
+                        Here
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+                        <label class="block font-bold text-gray-700 mb-2 text-xl lg:text-xl label-shadow"
+                            for="subject">Subject</label>
+                    </div>
+                    <div class="mb-6">
+                        <label for="internal1"
+                            class="block text-gray-700 font-bold mb-2 text-xl lg:text-xl label-shadow">Internal
+                            <br> Marks</label>
+                    </div>
+                    <div class="mb-6">
+                        <label for="external1"
+                            class="block text-gray-700 font-bold mb-2 text-xl lg:text-xl label-shadow">External
+                            <br> Marks</label>
+                    </div>
+                    <div class="mb-6">
+                        <label for="total1" class="block text-gray-700 font-bold mb-2 text-xl lg:text-xl label-shadow"
+                            id="total">Total</label>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <label for="credit" class="block text-gray-700 font-bold mb-2 text-xl lg:text-xl label-shadow"
+                            id="credit">Credit</label>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <label for="grade" class="block text-gray-700 font-bold mb-2 text-xl lg:text-xl label-shadow"
+                            id="grade">Grade</label>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-1">
+
+                <div class="grid grid-cols-4 md:grid-cols-6 sm:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject1" id="subject1" onchange="updateCredit('subject1', 'credit1')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight focus:outline-none text-xl lg:text-xl focus:shadow-outline placeholder-gray-400 ">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error1" class="text-red-500 text-md my-2  px-3 hidden">Please
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal1" id="internal1"
+                            class="w-full px-3 py-2 text-xl lg:text-xl placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal1()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm my-1 hidden h-10 w-35" id="internal1-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external1" id="external1"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal1()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm my-1 hidden" id="external1-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total1" id="total1"
+                            class="w-full px-3 py-2 text-xl lg:text-xl placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit1" id="credit1"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade1" id="grade1"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-2">
+
+                <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject2" id="subject2" onchange="updateCredit('subject2', 'credit2')" class="text-xl lg:text-xl shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error2" class="text-red-500 text-md my-2  px-3 hidden">
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal2" id="internal2"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal2()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal2-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external2" id="external2"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal2()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external2-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total2" id="total2"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit2" id="credit2"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade2" id="grade2"
+                            class="w-full px-3 text-xl lg:text-xl py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-3">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject3" id="subject3" onchange="updateCredit('subject3', 'credit3')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight focus:outline-none focus:shadow-outline text-xl lg:text-xl placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error3" class="text-red-500 text-md my-2  px-3 hidden"></p>
+
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal3" id="internal3"
+                            class="w-full text-sm lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal3()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal3-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external3" id="external3"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal3()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external3-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total3" id="total3"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit3" id="credit3"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade3" id="grade3"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-4">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject" id="subject4" onchange="updateCredit('subject4', 'credit4')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight text-xl lg:text-xl focus:outline-none focus:shadow-outline placeholder-gray-400 ">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error4" class="text-red-500 text-md my-2  px-3 hidden"></p>
+                        </div>
+
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal4" id="internal4"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal4()">
+                        <div class="error-container h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal4-error">Please enter a
+                                valid
+                                interna mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external4" id="external4"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal4()">
+                        <div class="error-container h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external4-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total4" id="total4"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit4" id="credit4"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade4" id="grade4"
+                            class="w-full  text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-5">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject" id="subject5" onchange="updateCredit('subject5', 'credit5')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight text-xl lg:text-xl focus:outline-none focus:shadow-outline placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error5" class="text-red-500 text-md my-2  px-3 hidden"></p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal5" id="internal5"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal5()">
+                        <div class="error-container h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal5-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external5" id="external5"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal5()">
+                        <div class="error-container h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external5-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total5" id="total5"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit5" id="credit5"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade5" id="grade5"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-6">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject" id="subject6" onchange="updateCredit('subject6', 'credit6')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight text-xl lg:text-xl focus:outline-none focus:shadow-outline placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error6" class="text-red-500 text-md my-2  px-3 hidden"></p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal6" id="internal6"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal6()">
+                        <div class="error-container h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal6-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external6" id="external6"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal6()">
+                        <div class="error-container h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external6-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total6" id="total6"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit6" id="credit6"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade6" id="grade6"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-7">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject" id="subject7" onchange="updateCredit('subject7', 'credit7')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight text-xl lg:text-xl focus:outline-none focus:shadow-outline placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error7" class="text-red-500 text-md my-2  px-3 hidden"></p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal7" id="internal7"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal7()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal7-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external7" id="external7"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal7()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external7-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total7" id="total7"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit7" id="credit7"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade7" id="grade7"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-8">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject8 " id="subject8" onchange="updateCredit('subject8', 'credit8')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight text-xl lg:text-xl focus:outline-none focus:shadow-outline placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error8" class="text-red-500 text-md my-2  px-3 hidden"></p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal8" id="internal8"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal8()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal8-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external8" id="external8"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal8()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external8-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total8" id="total8"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit8" id="credit8"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade8" id="grade8"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-field-9">
+
+                <div class="grid grid-cols-4  sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 second_field">
+                    <div class="mb-6">
+
+                        <select name="subject9 " id="subject9" onchange="updateCredit('subject9', 'credit9')"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                            leading-tight text-xl lg:text-xl focus:outline-none focus:shadow-outline placeholder-gray-400">
+                            <option value="">Select Subject</option>
+                            <option value="20MCA21">20MCA21 (DBMS)</option>
+                            <option value="20MCA22">20MCA22 (JAVA)</option>
+                            <option value="20MCA23">20MCA23 (WEB)</option>
+                            <option value="20MCA24">20MCA24 (SE)</option>
+                            <option value="20MCA251">20MCA251 (CS)</option>
+                            <option value="20MCA255">20MCA255 (OT)</option>
+                            <option value="20MCA262">20MCA262 (AI)</option>
+                            <option value="20MCA263">20MCA263 (MAD)</option>
+                            <option value="20MCA27">20MCA27 (DBMS LAB)</option>
+                            <option value="20MCA28">20MCA28 (JAVA LAB)</option>
+                            <option value="20MCA29">20MCA29 (WEB LAB)</option>
+
+                        </select>
+
+                        <div class="error-container  h-10 w-35">
+                            <p id="subject-error8" class="text-red-500 text-md my-2  px-3 hidden"></p>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <input type="number" name="internal9" id="internal9"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="40" onchange="updateTotal9()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="internal9-error">Please enter a
+                                valid
+                                internal mark
+                                between 0 and 40</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-6">
+                        <input type="number" name="external9" id="external9"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" min="0" max="60" onchange="updateTotal9()">
+                        <div class="error-container  h-10 w-35">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="external9-error">Please enter a
+                                valid
+                                external mark
+                                between 0
+                                and 60
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-6">
+                        <input type="number" name="total9" id="total9"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="credit9" id="credit9"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+
+
+                    <div class="mb-6 hidden sm:block md:block lg:block">
+                        <input type="number" name="grade9" id="grade9"
+                            class="w-full text-xl lg:text-xl px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                            placeholder="0" readonly>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="overlay" class="hidden fixed inset-0 bg-black opacity-75"></div>
+
+            <div id="modal" class="hidden fixed inset-0  items-center justify-center">
+                <div class="bg-white p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4" id="result"></h2>
+                    <div class="flex justify-between my-3">
+                        <div>
+                            <p class="font-bold">Percentage:</p>
+                            <p id="percentage" class="text-xl lg:text-xl font-bold"></p>
+                        </div>
+                        <div>
+                            <p class="font-bold">AND</p>
+                        </div>
+                        <div>
+                            <p class="font-bold">SGPA:</p>
+                            <p id="sgpa" class="text-xl lg:text-xl font-bold"></p>
+                        </div>
+                    </div>
+                    <div class="text-center my-3">
+                        <button onclick="hideModal()"
+                            class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-teal">Close</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="text-center my-3">
+                <button type="submit" onclick="calculate(event)"
+                    class="bg-teal-500 hover:bg-teal-600 text-white text-xl lg:text-xl font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-teal">Calculate</button>
+            </div>
+        </form>
+
+    </div>
+
+    <footer class="bg-white p-4">
+        <p class="text-gray-500 text-center text-xl lg:text-xl">Copyright © 2023 My Website. All Rights Reserved.</p>
+    </footer>
+    <script src="js/script2.js"></script>
+</body>
+
+
+</html>

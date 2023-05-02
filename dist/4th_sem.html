@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA & CGPA Calculator | By Ajith</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .active {
+            background-color: rgb(1, 163, 147);
+            color: #fff;
+        }
+
+        .image {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <nav class="bg-white  w-full z-10 rounded-lg shadow-lg py-1 sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <div class="flex-shrink-0">
+                <a href="/dist/index.html">
+                    <img class="h-16 w-auto image" src="img/logo.png" alt="Logo">
+                </a>
+            </div>
+            <div class="hidden md:block">
+                <div class="flex space-x-4">
+                    <a href="1st_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">1st
+                        sem</a>
+                    <a href="2nd_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">2nd
+                        sem</a>
+                    <a href="3rd_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">3rd
+                        sem</a>
+                    <a href="4th_sem.html"
+                        class="semester-tag text-gray-900 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium">4th
+                        sem</a>
+                </div>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#"
+                    class="hover:bg-teal-600 dashboard-link px-3 py-2 rounded-md text-xl lg:text-xl font-medium bg-teal-500 text-white">Dashboard</a>
+            </div>
+
+
+
+            <div class="-mr-2 flex md:hidden">
+                <button type="button" id="mobile-menu-button1"
+                    class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Hamburger menu icon -->
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true" id="menu-toggle">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="bg-black bg-opacity-50 fixed inset-0 z-50 hidden" id="mobile-menu">
+            <div class="flex flex-col items-center justify-center h-full">
+                <a href="#" class="text-white text-2xl font-bold mb-4">Menu</a>
+                <a href="1st_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">1st
+                    sem</a>
+                <a href="2nd_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">2nd
+                    sem</a>
+                <a href="3rd_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">3rd
+                    sem</a>
+                <a href="4th_sem.html"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl lg:text-xl font-medium mb-2">4th
+                    sem</a>
+                <button id="mobile-menu-button"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white absolute top-0 right-0 m-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="bg-teal-100">
+        <div class="flex flex-col justify-center items-center min-h-screen">
+            <div class="bg-white rounded-lg p-10 shadow-lg">
+                <h1 class="text-2xl font-bold text-gray-800 mb-5">4th sem! Still Working On It</h1>
+                <button class="bg-teal-500 text-white py-3 px-6 rounded-lg hover:bg-teal-600 transition-colors"
+                    onclick="goBack()">GO BACK</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        // JavaScript code
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerBtn = document.getElementById('menu-toggle');
+
+
+
+        hamburgerBtn.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+            // mobileMenu.classList.toggle('animate-fadeIn');
+        });
+
+
+        mobileMenuButton.addEventListener('click', function () {
+            mobileMenu.classList.remove('hidden');
+        });
+
+
+        mobileMenu.addEventListener('click', function () {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Get the close button element
+        const closeButton = document.querySelector('#close-button');
+
+        // Get the mobile menu element
+        const mobileMenu1 = document.querySelector('#mobile-menu');
+
+
+
+
+        const semesterTags = document.querySelectorAll('.semester-tag');
+
+        // semesterTags.forEach(tag => {
+        //     tag.addEventListener('click', () => {
+        //         semesterTags.forEach(tag => {
+        //             tag.classList.remove('active');
+        //         });
+        //         tag.classList.add('active');
+        //     });
+        // });
+
+        semesterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                console.log('Clicked', tag);
+                semesterTags.forEach(tag => {
+                    tag.classList.remove('active');
+                    console.log('Removed active from', tag);
+                });
+                tag.classList.add('active');
+                console.log('Added active to', tag);
+            });
+        });
+
+
+
+        const fourthSemesterTag = document.querySelector('a[href="4th_sem.html"]');
+        fourthSemesterTag.classList.add('active');
+
+
+
+    </script>
+</body>
+
+</html>

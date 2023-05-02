@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA & CGPA Calculator | By Ajith</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* .active {
+            background-color: rgb(1, 163, 147);
+            color: #fff;
+        } */
+
+        .image {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- navabr -->
+
+
+    <div class="bg-teal-200">
+        <div class="flex flex-col justify-center items-center h-screen">
+            <div class="bg-white rounded-lg p-10 shadow-lg">
+                <h1 class="text-2xl font-bold text-gray-800 mb-5">CGPA! Still Working On It</h1>
+                <button class="bg-teal-500 text-white py-3 px-6 rounded-lg hover:bg-teal-600 transition-colors"
+                    onclick="goBack()">GO BACK</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        // JavaScript code
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerBtn = document.getElementById('menu-toggle');
+
+
+
+        hamburgerBtn.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+            // mobileMenu.classList.toggle('animate-fadeIn');
+        });
+
+
+        mobileMenuButton.addEventListener('click', function () {
+            mobileMenu.classList.remove('hidden');
+        });
+
+
+        mobileMenu.addEventListener('click', function () {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Get the close button element
+        const closeButton = document.querySelector('#close-button');
+
+        // Get the mobile menu element
+        const mobileMenu1 = document.querySelector('#mobile-menu');
+
+
+
+
+        const semesterTags = document.querySelectorAll('.semester-tag');
+
+        semesterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                semesterTags.forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                tag.classList.add('active');
+            });
+        });
+
+
+
+
+        const fourthSemesterTag = document.querySelector('a[href="4th_sem.html"]');
+        fourthSemesterTag.classList.add('active');
+
+
+
+    </script>
+</body>
+
+</html>
